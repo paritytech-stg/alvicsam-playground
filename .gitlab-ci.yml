@@ -31,7 +31,7 @@ build-job:
   stage:                           build
   <<:                              *test-refs
   script:
-    - exit1
+    - exit 1
 
 build-job2:
   stage:                           build
