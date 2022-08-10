@@ -56,4 +56,5 @@ cancel-pipeline:
   variables:
     PROJECT_ID:                    "${CI_PROJECT_ID}"
     PIPELINE_ID:                   "${CI_PIPELINE_ID}"
+    FAILED_JOB_URL:                "${FAILED_JOB_URL}"
   trigger:                         "parity/infrastructure/ci_cd/pipeline-stopper"
