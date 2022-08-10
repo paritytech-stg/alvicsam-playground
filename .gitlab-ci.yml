@@ -30,8 +30,15 @@ default:
 build-job:
   stage:                           build
   <<:                              *test-refs
+  before_script:
+  # collecting vars for pipeline stopper
+  # they will be used if the job fails
+    - echo "FAILED_JOB_URL=${CI_JOB_URL}" > pipeline-stopper.env
   script:
     - exit 1
+  artifacts:
+     reports:
+       dotenv: pipeline-stopper.env
 
 build-job2:
   stage:                           build
@@ -43,7 +50,6 @@ cancel-pipeline:
   stage:                           .post
   needs:
     - job:                         build-job
-      artifacts:                   false
   rules:
     - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
       when: on_failure
