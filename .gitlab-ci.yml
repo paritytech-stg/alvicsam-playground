@@ -49,10 +49,10 @@ cargo-fmt:
         echo "------ git fetch --------------------";
         git config -f .git/config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*";
         git fetch origin $PR_BRANCH;
-        echo "------ git pull ---------------------";
-        git pull origin $PR_BRANCH;
         echo "------ git checkout -----------------";
         git checkout $PR_BRANCH;
+        echo "------ git pull ---------------------";
+        git pull origin $PR_BRANCH;
         echo "--- cargo fmt -----------------------";
         cargo fmt;
         echo "----  git status --------------------";
