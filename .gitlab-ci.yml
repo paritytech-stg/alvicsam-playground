@@ -40,14 +40,11 @@ cargo-fmt:
       else
         echo "--- we need to push some changes ----";
         echo "--- setup ssh -----------------------";
-        apt-get update && apt-get install -y ssh;
-        eval $(ssh-agent);
-        ssh-add - <<< ${GITHUB_SSH_PRIV_KEY};
-        mkdir ~/.ssh && touch ~/.ssh/known_hosts;
-        ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts;
-        echo "----  git config --------------------";
-        git config --global user.email "jd@example.com";
-        git config --global user.name "John Doe";
+        rm -rf .git/config;
+        git config --global user.email "${GITHUB_EMAIL}";
+        git config --global user.name "${GITHUB_USER}";
+        git config remote.origin.url "https://${GITHUB_TOKEN}@github.com/paritytech/substrate.git";
+        git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
         echo "----  git status --------------------";
         git status;
         echo "----  git add -----------------------";
