@@ -14,7 +14,6 @@ impl Rectangle {
     fn can_hold(&self, other: &Rectangle) -> bool {
         self.width > other.width && self.height > other.height
     }
-
 }
 impl Rectangle {
     fn square(size: u32) -> Rectangle {
@@ -39,6 +38,3 @@ fn main() {
     println!("Perimeter of {:?} = {}", rec1, rec1.perimeter());
     println!("Rec1 can hold Rec2: {}", rec1.can_hold(&rec2));
 }
-
-
-
