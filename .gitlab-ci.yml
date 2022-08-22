@@ -34,6 +34,7 @@ cargo-fmt:
   variables:
     GIT_STRATEGY:                  none
   script:
+    - sleep 3600
     - cargo fmt --check && export NEED_FMT=0 || export NEED_FMT=1
     - if [[ $NEED_FMT == 0  ]]; then
         echo "ok";
