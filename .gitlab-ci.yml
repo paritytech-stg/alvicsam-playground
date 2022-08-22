@@ -37,6 +37,7 @@ cargo-fmt:
     - echo PROJECT_NAME=$CI_PROJECT_NAME > fmt.env
     - echo PR_BRANCH="as-rust" >> fmt.env
   script:
+    - ls -la
     - cargo fmt --check
   artifacts:
      reports:
