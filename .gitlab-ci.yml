@@ -45,9 +45,10 @@ cargo-fmt:
         git config -f .git/config user.email "${GITHUB_EMAIL}";
         echo "------ set password -----------------";
         git config -f .git/config user.name "${GITHUB_USER}";
-        echo "------ set remote -------------------";
-        git config remote.origin.url "https://${GITHUB_TOKEN}@github.com/tripleightech/alvicsam-playground.git";
-        git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+        echo "------ set remote repo --------------";
+        git config -f .git/config remote.origin.url "https://${GITHUB_TOKEN}@github.com/tripleightech/alvicsam-playground.git";
+        echo "------ git fetch --------------------";
+        git config -f .git/config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*";
         echo "----  git status --------------------";
         git status;
         echo "----  git add -----------------------";
