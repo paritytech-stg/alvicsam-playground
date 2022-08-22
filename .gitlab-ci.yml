@@ -32,7 +32,7 @@ cargo-fmt:
   stage:                           fmt
   <<:                              *test-refs
   script:
-    - cargo fmt --check || export NEED_FMT=1 && export NEED_FMT=0
+    - cargo fmt --check && export NEED_FMT=0 || export NEED_FMT=1
     - if [[ $NEED_FMT == 0  ]]; then
         echo "ok";
       else
