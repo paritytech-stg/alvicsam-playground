@@ -33,7 +33,7 @@ cargo-fmt:
   <<:                              *test-refs
   before_script:
     - echo PROJECT_NAME=$CI_PROJECT_NAME > fmt.env
-    - echo PR_BRANCH="as-rust" >> fmt.env
+    - echo PR_BRANCH_NAME=$(curl -s https://api.github.com/repos/tripleightech/${CI_PROJECT_NAME}/pulls/${CI_COMMIT_REF_NAME} | jq ".head.ref") >> fmt.env
   script:
     - ls -la
     - cargo fmt --check
@@ -56,7 +56,7 @@ format-me:
     - job: cargo-fmt
   variables:
     PROJECT_NAME:                  "${CI_PROJECT_NAME}"
-    PR_BRANCH:                     "${PR_BRANCH}"
+    PR_BRANCH_NAME:                "${PR_BRANCH_NAME}"
   trigger:
     project:                       "parity/infrastructure/ci_cd/formatter"
 
