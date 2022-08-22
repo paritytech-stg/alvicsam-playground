@@ -32,13 +32,11 @@ cargo-fmt:
   stage:                           fmt
   <<:                              *test-refs
   script:
-    - cargo fmt
-    - git diff
-    # xargs trimms whitespaces
-    - if [[ `git diff | wc -l | xargs` == 0  ]]; then
+    - cargo fmt --check || export NEED_FMT=1 && export NEED_FMT=0
+    - if [[ $NEED_FMT == 0  ]]; then
         echo "ok";
       else
-        export PR_BRANCH=as-rust;
+        export PR_BRANCH="as-rust";
         echo "--- we need to push some changes ----";
         echo "--- setup ssh -----------------------";
         rm -rf .git/config;
@@ -53,6 +51,8 @@ cargo-fmt:
         git fetch origin $PR_BRANCH;
         echo "------ git checkout -----------------";
         git checkout $PR_BRANCH;
+        echo "--- cargo fmt -----------------------";
+        cargo fmt;
         echo "----  git status --------------------";
         git status;
         echo "----  git add -----------------------";
