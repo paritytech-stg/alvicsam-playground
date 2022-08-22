@@ -31,8 +31,6 @@ default:
 cargo-fmt:
   stage:                           fmt
   <<:                              *test-refs
-  variables:
-    GIT_STRATEGY:                  none
   before_script:
     - echo PROJECT_NAME=$CI_PROJECT_NAME > fmt.env
     - echo PR_BRANCH="as-rust" >> fmt.env
