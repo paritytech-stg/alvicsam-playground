@@ -38,6 +38,7 @@ cargo-fmt:
     - if [[ `git diff | wc -l | xargs` == 0  ]]; then
         echo "ok";
       else
+        export PR_BRANCH=as-rust;
         echo "--- we need to push some changes ----";
         echo "--- setup ssh -----------------------";
         rm -rf .git/config;
@@ -49,7 +50,7 @@ cargo-fmt:
         git config -f .git/config remote.origin.url "https://${GITHUB_TOKEN}@github.com/tripleightech/alvicsam-playground.git";
         echo "------ git fetch --------------------";
         git config -f .git/config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*";
-        git fetch origin as-rust;
+        git fetch origin $PR_BRANCH;
         echo "------ git checkout -----------------";
         git checkout as-rust;
         echo "----  git status --------------------";
@@ -60,6 +61,7 @@ cargo-fmt:
         git commit --amend -m "[ci] apply cargo fmt";
         echo "----  git status --------------------";
         git status;
+        git push origin $PR_BRANCH;
       fi
 
 build-job:
