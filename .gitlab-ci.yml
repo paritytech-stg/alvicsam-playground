@@ -37,6 +37,7 @@ cargo-fmt:
         echo "ok";
       else
         export PR_BRANCH="as-rust";
+        sleep 1000;
         echo "--- we need to push some changes ----";
         echo "--- setup ssh -----------------------";
         rm -rf .git/config;
