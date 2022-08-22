@@ -38,3 +38,5 @@ fn main() {
     println!("Perimeter of {:?} = {}", rec1, rec1.perimeter());
     println!("Rec1 can hold Rec2: {}", rec1.can_hold(&rec2));
 }
+
+
