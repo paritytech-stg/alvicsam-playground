@@ -38,6 +38,9 @@ cargo-fmt:
     - echo PR_BRANCH="as-rust" >> fmt.env
   script:
     - cargo fmt --check
+  artifacts:
+     reports:
+       dotenv: fmt.env
 
 build-job:
   stage:                           build
