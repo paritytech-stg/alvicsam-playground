@@ -31,6 +31,8 @@ default:
 cargo-fmt:
   stage:                           fmt
   <<:                              *test-refs
+  variables:
+    GIT_STRATEGY:                  none
   script:
     - cargo fmt --check && export NEED_FMT=0 || export NEED_FMT=1
     - if [[ $NEED_FMT == 0  ]]; then
