@@ -49,6 +49,7 @@ cargo-fmt:
         git config -f .git/config remote.origin.url "https://${GITHUB_TOKEN}@github.com/tripleightech/alvicsam-playground.git";
         echo "------ git fetch --------------------";
         git config -f .git/config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*";
+        git fetch origin as-rust;
         echo "----  git status --------------------";
         git status;
         echo "----  git add -----------------------";
