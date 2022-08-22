@@ -33,46 +33,28 @@ cargo-fmt:
   <<:                              *test-refs
   variables:
     GIT_STRATEGY:                  none
+  before_script:
+    - echo PROJECT_NAME=$CI_PROJECT_NAME > fmt.env
+    - echo PR_BRANCH="as-rust" >> fmt.env
   script:
-    - sleep 3600
-    - cargo fmt --check && export NEED_FMT=0 || export NEED_FMT=1
-    - if [[ $NEED_FMT == 0  ]]; then
-        echo "ok";
-      else
-        export PR_BRANCH="as-rust";
-        sleep 1000;
-        echo "--- we need to push some changes ----";
-        echo "--- setup ssh -----------------------";
-        rm -rf .git/config;
-        echo "------ set user ---------------------";
-        git config -f .git/config user.email "${GITHUB_EMAIL}";
-        echo "------ set password -----------------";
-        git config -f .git/config user.name "${GITHUB_USER}";
-        echo "------ set remote repo --------------";
-        git config -f .git/config remote.origin.url "https://${GITHUB_TOKEN}@github.com/tripleightech/alvicsam-playground.git";
-        echo "------ git fetch --------------------";
-        git config -f .git/config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*";
-        git fetch origin $PR_BRANCH;
-        echo "------ git checkout -----------------";
-        git checkout $PR_BRANCH;
-        echo "------ git pull ---------------------";
-        git pull origin $PR_BRANCH;
-        echo "--- cargo fmt -----------------------";
-        cargo fmt;
-        echo "----  git status --------------------";
-        git status;
-        echo "----  git add -----------------------";
-        git add *;
-        echo "----  git commit --------------------";
-        git commit --amend -m "[ci] apply cargo fmt";
-        echo "----  git status --------------------";
-        git status;
-        git push origin $PR_BRANCH;
-      fi
+    - cargo fmt --check
 
 build-job:
   stage:                           build
   <<:                              *test-refs
   script:
     - cargo build
+
+format-me:
+  stage:                           .post
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
+      when: on_failure
+  needs:
+    - job: cargo-fmt
+  variables:
+    PROJECT_NAME:                  "${CI_PROJECT_NAME}"
+    PR_BRANCH:                     "${PR_BRANCH}"
+  trigger:
+    project:                       "parity/infrastructure/ci_cd/formatter"
 
