@@ -43,6 +43,11 @@ build-job:
      reports:
        dotenv: pipeline-stopper.env
 
+build-job2:
+  stage:                           build
+  <<:                              *test-refs
+  script:
+    - echo ok
 
 cancel-pipeline:
   stage:                           .post
