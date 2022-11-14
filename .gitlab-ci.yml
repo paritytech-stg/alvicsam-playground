@@ -73,7 +73,7 @@ remove-cancel-pipeline-message:
     PROJECT_ID:                    "${CI_PROJECT_ID}"
     PROJECT_NAME:                  "${CI_PROJECT_NAME}"
     PIPELINE_ID:                   "${CI_PIPELINE_ID}"
-    FAILED_JOB_URL:                "nope"
+    FAILED_JOB_URL:                "https://gitlab.com"
     FAILED_JOB_NAME:               "nope"
     PR_NUM:                        "${CI_COMMIT_REF_NAME}"
   trigger:                         "parity/infrastructure/ci_cd/pipeline-stopper"
