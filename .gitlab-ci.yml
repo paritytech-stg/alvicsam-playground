@@ -64,3 +64,16 @@ cancel-pipeline:
     FAILED_JOB_NAME:               "${FAILED_JOB_NAME}"
     PR_NUM:                        "${PR_NUM}"
   trigger:                         "parity/infrastructure/ci_cd/pipeline-stopper"
+
+remove-cancel-pipeline-message:
+  stage: .post
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/                         # PRs
+  variables:
+    PROJECT_ID:                    "${CI_PROJECT_ID}"
+    PROJECT_NAME:                  "${CI_PROJECT_NAME}"
+    PIPELINE_ID:                   "${CI_PIPELINE_ID}"
+    FAILED_JOB_URL:                "nope"
+    FAILED_JOB_NAME:               "nope"
+    PR_NUM:                        "${CI_COMMIT_REF_NAME}"
+  trigger:                         "parity/infrastructure/ci_cd/pipeline-stopper"
