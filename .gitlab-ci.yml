@@ -8,7 +8,6 @@ variables:
   TEST_GLOBAL_VAR: "lalala"
 
 default:
-  image: $CI_IMAGE
   retry:
     max: 2
     when:
@@ -16,8 +15,11 @@ default:
       - unknown_failure
       - api_failure
   interruptible: true
+
+.kubernetes-env:
+  image: $CI_IMAGE
   tags:
-    - testlab-docker
+    - kubernetes-parity-build
 
 .test-refs: &test-refs
   rules:
