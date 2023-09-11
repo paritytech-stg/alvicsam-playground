@@ -22,7 +22,7 @@ default:
   tags:
     - kubernetes-parity-build
 
-.test-refs: &test-refs
+.test-refs:
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "schedule"
@@ -32,7 +32,9 @@ default:
 
 build-job:
   stage: build
-  <<: *test-refs
+  extends:
+    - .kubernetes-env
+    - .test-refs
   variables:
     TEST_LOCAL_VAR: "ololo"
   script:
