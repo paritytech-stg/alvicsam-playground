@@ -40,6 +40,7 @@ build-job:
   script:
     - echo $TEST_GLOBAL_VAR
     - echo $TEST_LOCAL_VAR
+    - sleep 30
     - export PRNUM=$CI_COMMIT_BRANCH
     - export BRANCHNAME=$(curl -s https://api.github.com/repos/tripleightech/alvicsam-playground/pulls/$PRNUM | jq '.head.ref')
     - echo $BRANCHNAME
@@ -52,6 +53,7 @@ tests:
     - if: $CI_COMMIT_REF_NAME == "master"
   script:
     - echo "run always (but not with tags)"
+    - sleep 30
 
 publish-dry-run:
   stage: publish
