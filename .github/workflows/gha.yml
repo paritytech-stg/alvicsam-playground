@@ -1,0 +1,12 @@
+name: hello-world
+on:
+  push:
+  merge_group:
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: |
+          echo "Hello World!"
+          echo ${{ github.event.pull_request.number }}
