@@ -76,6 +76,18 @@ fail_queue:
     - echo $CI_COMMIT_REF_NAME | grep gh-readonly-queue && exit 1
     - exit 0
 
+pass_queue:
+  stage: test
+  extends:
+    - .kubernetes-env
+    - .test-refs
+  script:
+    - sleep 30
+    # fail job on gh-readonly-queue.* branch
+    - echo $CI_COMMIT_REF_NAME
+    - echo $CI_COMMIT_REF_NAME | grep gh-readonly-queue && sleep 60
+    - exit 0
+
 deploy:
   stage: deploy
   extends:
