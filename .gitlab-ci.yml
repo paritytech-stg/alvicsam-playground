@@ -56,6 +56,18 @@ tests:
     - echo "run always (but not with tags)"
     - sleep 30
 
+pass_queue:
+  stage: test
+  extends:
+    - .kubernetes-env
+    - .test-refs
+  script:
+    - sleep 60
+    # fail job on gh-readonly-queue.* branch
+    - echo $CI_COMMIT_REF_NAME
+    - echo $CI_COMMIT_REF_NAME | grep gh-readonly-queue && sleep 60
+    - exit 0
+
 publish-dry-run:
   stage: publish
   extends: .kubernetes-env
