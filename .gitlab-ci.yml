@@ -64,6 +64,7 @@ fail_queue:
   script:
     - sleep 30
     # fail job on gh-readonly-queue.* branch
+    - echo $CI_COMMIT_REF_NAME
     - echo $CI_COMMIT_REF_NAME | grep gh-readonly-queue && exit 1
 
 deploy:
