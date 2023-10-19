@@ -12,4 +12,4 @@ jobs:
       - name: my-step
         run: |
           echo "Hello World!"
-          echo ${{ github.event.pull_request.number }}
+          echo "PR Num: ${{ github.event.pull_request.number }}"
