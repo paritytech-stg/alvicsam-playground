@@ -6,6 +6,9 @@ jobs:
   hello-world:
     runs-on: ubuntu-latest
     steps:
+      - name: Fail in a merge queue
+        if: github.event.merge_group == true
+        run: exit 1
       - name: my-step
         run: |
           echo "Hello World!"
