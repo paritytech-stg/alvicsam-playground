@@ -7,8 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fail in a merge queue
-        if: ${{ startsWith(env.GITHUB_REF_NAME, 'gh-readonly-queue') }}
-        run: exit 1
+        # if: ${{ startsWith(env.GITHUB_REF_NAME, 'gh-readonly-queue') }}
+        # clunky way to check if it works
+        run: |
+          echo $env.GITHUB_REF_NAME | grep gh-readonly-queue && exit 1
       - name: my-step
         run: |
           echo "Hello World!"
