@@ -14,4 +14,4 @@ jobs:
           echo "Hello World!"
           echo "PR Num: ${{ github.event.pull_request.number }}"
           echo "MG Var: ${{ github.event.merge_group }}"
-          env
+          env | grep GITHUB
