@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fail in a merge queue
-        if: github.event.merge_group == "Object"
+        if: github.event.merge_group == Object
         run: exit 1
       - name: my-step
         run: |
