@@ -1,0 +1,14 @@
+name: hello-world
+on:
+  push:
+  merge_group:
+jobs:
+  hello-world:
+    runs-on: cmd-bot
+    steps:
+      - name: my-step
+        run: |
+          echo "Hello World!"
+          echo "PR Num: ${{ github.event.pull_request.number }}"
+          echo "MG Var: ${{ github.event.merge_group }}"
+          env | grep GITHUB
