@@ -1,0 +1,19 @@
+name: hello-world
+on:
+  push:
+  merge_group:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: |
+          echo "Hello World!"
+          echo "PR Num: ${{ github.event.pull_request.number }}"
+          echo "MG Var: ${{ github.event.merge_group }}"
+          env | grep GITHUB

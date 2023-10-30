@@ -1,0 +1,15 @@
+name: test-spot
+on:
+  push:
+  merge_group:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: |
+          echo "job1"
+          # sleep 3600
