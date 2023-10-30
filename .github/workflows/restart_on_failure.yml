@@ -3,7 +3,6 @@ on:
   workflow_run:
     workflows:
       - test-spot
-      - hello-world
     types: [completed]
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
