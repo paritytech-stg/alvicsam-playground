@@ -1,0 +1,12 @@
+name: test-spot
+on:
+  push:
+  merge_group:
+jobs:
+  job1:
+    runs-on: cmd-bot
+    steps:
+      - name: my-step
+        run: |
+          echo "job1"
+          sleep 3600
