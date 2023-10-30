@@ -12,24 +12,3 @@ jobs:
           echo "PR Num: ${{ github.event.pull_request.number }}"
           echo "MG Var: ${{ github.event.merge_group }}"
           env | grep GITHUB
-  job1:
-    runs-on: cmd-bot
-    steps:
-      - name: my-step
-        run: |
-          echo "job1"
-          sleep 3600
-  job2:
-    runs-on: cmd-bot
-    steps:
-      - name: my-step
-        run: |
-          echo "job2"
-          sleep 3600
-  job3:
-    runs-on: cmd-bot
-    steps:
-      - name: my-step
-        run: |
-          echo "job3"
-          sleep 3600
