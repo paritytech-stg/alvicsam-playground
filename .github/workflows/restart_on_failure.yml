@@ -3,7 +3,9 @@ on:
   workflow_run:
     workflows: [test-spot]
     types: [completed]
-
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   on-success:
     runs-on: cmd-bot
