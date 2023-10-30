@@ -12,4 +12,4 @@ jobs:
       - name: my-step
         run: |
           echo "job1"
-          sleep 3600
+          # sleep 3600
