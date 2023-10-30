@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   hello-world:
-    runs-on: cmd-bot
+    runs-on: ubuntu-latest
     steps:
       - name: my-step
         run: |
