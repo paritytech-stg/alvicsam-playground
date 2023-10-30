@@ -7,9 +7,9 @@ concurrency:
   cancel-in-progress: true
 jobs:
   job1:
-    runs-on: ubuntu-latest
+    runs-on: cmd-bot
     steps:
       - name: my-step
         run: |
           echo "job1"
-          # sleep 3600
+          sleep 3600
