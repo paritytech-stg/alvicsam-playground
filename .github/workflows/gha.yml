@@ -2,16 +2,15 @@ name: hello-world
 on:
   push:
   merge_group:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   hello-world:
     runs-on: ubuntu-latest
     steps:
-      - name: Fail in a merge queue
-        if: ${{ contains(github.ref, 'gh-readonly-queue') }}
-        run: exit 1
-        # clunky way to make it work
-        # run: |
-        #   echo $GITHUB_REF_NAME | grep gh-readonly-queue && exit 1 || echo continue
       - name: my-step
         run: |
           echo "Hello World!"
