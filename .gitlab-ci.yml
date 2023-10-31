@@ -53,6 +53,7 @@ build-job:
     - export PRNUM=$CI_COMMIT_BRANCH
     - export BRANCHNAME=$(curl -s https://api.github.com/repos/tripleightech/alvicsam-playground/pulls/$PRNUM | jq '.head.ref')
     - echo $BRANCHNAME
+    - ls -la
 
 tests:
   stage: test
