@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   hello-world:
-    runs-on: ubuntu-latest
+    runs-on: actions-runner-controller
     steps:
       - name: my-step
         run: |
