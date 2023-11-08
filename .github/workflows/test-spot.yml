@@ -7,10 +7,10 @@ concurrency:
   cancel-in-progress: true
 jobs:
   job1:
-    runs-on: cmd-bot
+    runs-on: asamusev
     steps:
       - name: my-step
         run: |
           echo "job1"
           env
-          sleep 3600
+          #sleep 3600
