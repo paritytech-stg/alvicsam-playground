@@ -12,5 +12,5 @@ jobs:
       - name: my-step
         run: |
           echo "job1"
-          env
           sleep 30
+          echo aaaaaa
