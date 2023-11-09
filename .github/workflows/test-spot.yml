@@ -13,5 +13,4 @@ jobs:
         run: |
           echo "job1"
           env
-          #sleep 30
-          echo aaaaaa
+          sleep 300
