@@ -13,6 +13,10 @@ jobs:
   job1:
     runs-on: asamusev
     steps:
+      - name: Sleep for 10s
+        uses: juliangruber/sleep-action@v2.0.0
+        with:
+          time: 30s
       - name: my-step
         #env:
         #  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
