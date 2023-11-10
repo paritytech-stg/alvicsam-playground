@@ -19,4 +19,4 @@ jobs:
         run: |
           echo "job1"
           env
-          sleep 600
+          sleep 3600
