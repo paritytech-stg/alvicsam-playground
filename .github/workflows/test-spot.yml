@@ -16,7 +16,7 @@ jobs:
       - name: Sleep for 10s
         uses: juliangruber/sleep-action@v2.0.0
         with:
-          time: 30s
+          time: 60s
       - name: my-step
         #env:
         #  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
