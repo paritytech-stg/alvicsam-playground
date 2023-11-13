@@ -12,8 +12,6 @@ env:
 jobs:
   job1:
     runs-on: asamusev
-    container:
-      image: paritytech/ci-unified:bullseye-1.73.0-2023-11-01-v20231025
     steps:
       #- name: Sleep for 10s
       #  uses: juliangruber/sleep-action@v2.0.0
@@ -25,8 +23,10 @@ jobs:
         run: |
           echo "job1"
           env
-          sleep 30
+          sleep 300
       - name: my-step2
+        container:
+          image: paritytech/ci-unified:bullseye-1.73.0-2023-11-01-v20231025
         run: |
           echo "job1"
           env
