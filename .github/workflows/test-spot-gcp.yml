@@ -10,6 +10,13 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
+  short-sleep-job:
+    runs-on: actions-runner-controller
+    steps:
+      - name: my-step
+        run: |
+          echo "job1"
+          sleep 300
   test-spot-gcp:
     runs-on: actions-runner-controller
     container:
@@ -18,10 +25,8 @@ jobs:
       - name: my-step
         run: |
           echo "job1"
-          env
           sleep 300
       - name: my-step2
         run: |
           echo "job1"
-          env
           sleep 3600
