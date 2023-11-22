@@ -22,4 +22,4 @@ jobs:
       - name: short-sleep1
         run: |
           echo job1
-          sleep 300
+          sleep 3600
