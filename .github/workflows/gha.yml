@@ -11,15 +11,6 @@ jobs:
   short-sleep1:
     runs-on: ubuntu-latest
     steps:
-      - name: short-sleep1
+      - name: cpu count
         run: |
-          echo job1
-          sleep 3
-          exit 1
-  short-sleep2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: short-sleep1
-        run: |
-          echo job1
-          sleep 3600
+          cat /proc/cpuinfo
