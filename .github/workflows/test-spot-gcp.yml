@@ -9,6 +9,9 @@ concurrency:
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+permissions:
+  actions: read
+
 jobs:
   test-spot-gcp:
     runs-on: actions-runner-controller
