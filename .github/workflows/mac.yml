@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   mac-cpu:
-    runs-on: macos-latest
+    runs-on: macos-latest-xlarge
     steps:
       - name: cpu model
         run: sysctl -n machdep.cpu.brand_string
