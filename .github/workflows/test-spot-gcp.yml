@@ -8,38 +8,13 @@ concurrency:
   cancel-in-progress: true
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  CI_IMAGE: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
 
 permissions:
   actions: read
 
 jobs:
-  set-image:
-    runs-on: ubuntu-latest
-    outputs:
-      CI_IMAGE: ${{ steps.set_image.outputs.CI_IMAGE }}
-    steps:
-      - id: set_image
-        run: echo "CI_IMAGE=${{ env.CI_IMAGE }}" >> $GITHUB_OUTPUT
   test-spot-gcp:
     runs-on: actions-runner-controller
-    needs: [set-image]
-    container:
-      image: ${{ needs.set-image.outputs.CI_IMAGE }}
-    steps:
-      - name: my-step
-        run: |
-          echo "job1"
-          sleep 300
-      - name: my-step2
-        run: |
-          echo "job1"
-          sleep 3600
-  test-spot-gcp2:
-    runs-on: actions-runner-controller
-    needs: [set-image]
-    container:
-      image: ${{ needs.set-image.outputs.CI_IMAGE }}
     steps:
       - name: my-step
         run: |
