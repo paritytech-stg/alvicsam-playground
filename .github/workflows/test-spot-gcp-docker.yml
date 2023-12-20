@@ -21,7 +21,7 @@ jobs:
     steps:
       - id: set_image
         run: echo "CI_IMAGE=${{ env.CI_IMAGE }}" >> $GITHUB_OUTPUT
-  test-spot-gcp:
+  job1:
     runs-on: actions-runner-controller
     needs: [set-image]
     container:
@@ -35,7 +35,7 @@ jobs:
         run: |
           echo "job1"
           sleep 3600
-  test-spot-gcp2:
+  job2:
     runs-on: actions-runner-controller
     needs: [set-image]
     container:
