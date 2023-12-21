@@ -59,7 +59,7 @@ codecov:
     - if: $CI_COMMIT_REF_NAME == "master"
   script:
     - rustup component add llvm-tools-preview
-    - CARGO_INCREMENTAL=0 RUSTFLAGS='-Cinstrument-coverage' LLVM_PROFILE_FILE='cargo-test-%p-%m.profraw' time cargo nextest run
+    - CARGO_INCREMENTAL=0 RUSTFLAGS='-Cinstrument-coverage' LLVM_PROFILE_FILE='cargo-test-%p-%m.profraw' time cargo nextest run --release
     - mkdir -p target/coverage
     - grcov . --binary-path ./target/release/deps/ -s . -t lcov --branch --ignore-not-existing --ignore '../*' --ignore "/*" -o target/coverage/tests.lcov
     - codecov --token "${CODECOV_TOKEN}" --file target/coverage/tests.lcov
