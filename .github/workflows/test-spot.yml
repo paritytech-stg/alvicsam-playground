@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: my-step
         run: |
-          echo IMAGE_TAG=$(echo "${{ env.GITHUB_REF_NAME }}") >> $GITHUB_ENV
+          echo IMAGE_TAG=$(echo "${GITHUB_REF_NAME}") >> $GITHUB_ENV
           echo $IMAGE_TAG
           echo "Docker image will be published with the tag: ${{ env.IMAGE_TAG }} $IMAGE_TAG!"
       - name: my-step2
