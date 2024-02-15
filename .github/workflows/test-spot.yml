@@ -7,15 +7,8 @@ concurrency:
   cancel-in-progress: true
 jobs:
   job1:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: my-step
         run: |
-          echo "GITHUB_REF_NAME: ${GITHUB_REF_NAME}"
-          echo IMAGE_TAG=$(echo "${GITHUB_REF_NAME}") >> $GITHUB_ENV
-          echo $IMAGE_TAG
-          echo "Docker image will be published with the tag: ${{ env.IMAGE_TAG }} $IMAGE_TAG!"
-      - name: my-step2
-        run: |
-          echo ${{ env.IMAGE_TAG }}
-          echo $IMAGE_TAG
+          df -h
