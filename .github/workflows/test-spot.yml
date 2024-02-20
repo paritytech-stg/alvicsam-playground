@@ -7,13 +7,8 @@ concurrency:
   cancel-in-progress: true
 jobs:
   job1:
-    runs-on: ubuntu-22.04
+    runs-on: actions-runner-controller
     steps:
       - name: my-step
         run: |
-          df -h
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /opt/ghc
-          sudo rm -rf "/usr/local/share/boost"
-          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-          df -h
+          sleep 300
