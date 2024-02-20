@@ -14,4 +14,4 @@ jobs:
       - name: my-step
         run: |
           echo "Hello World!"
-          sleep 600
+          sleep 3600
