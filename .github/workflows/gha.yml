@@ -1,4 +1,4 @@
-name: hello-world
+name: self-hosted-runner-default
 on:
   push:
   merge_group:
@@ -14,4 +14,4 @@ jobs:
       - name: my-step
         run: |
           echo "Hello World!"
-          sleep 300
+          sleep 600
