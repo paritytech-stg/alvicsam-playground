@@ -6,6 +6,12 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CI_IMAGE: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
+
+permissions:
+  actions: read
 
 jobs:
   hello-world:
