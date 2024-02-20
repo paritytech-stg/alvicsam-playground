@@ -9,8 +9,9 @@ concurrency:
 
 jobs:
   hello-world:
-    runs-on: arc-default-runners
+    runs-on: arc-runners-default
     steps:
       - name: my-step
         run: |
           echo "Hello World!"
+          sleep 300
