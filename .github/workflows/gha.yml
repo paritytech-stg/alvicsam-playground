@@ -16,10 +16,10 @@ permissions:
 jobs:
   hello-world:
     runs-on: arc-runners-default
-    # container:
-    #   image: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
+    container:
+      image: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
     steps:
       - name: my-step
         run: |
           echo "Hello World!"
-          sleep 3600
+          sleep 600
