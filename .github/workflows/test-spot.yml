@@ -7,8 +7,9 @@ concurrency:
   cancel-in-progress: true
 jobs:
   job1:
-    runs-on: actions-runner-controller
+    # runs-on: actions-runner-controller
+    runs-on: ubuntu-latest
     steps:
       - name: my-step
         run: |
-          sleep 300
+          echo hello
