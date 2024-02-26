@@ -22,8 +22,8 @@ jobs:
       - name: hello
         run: |
           echo "Hello World!"
-          echo $GITHUB_RUN_ID
-          sleep 300
+          env
+          sleep 3600
   hello-world2:
     runs-on: arc-runners-default
     # container:
