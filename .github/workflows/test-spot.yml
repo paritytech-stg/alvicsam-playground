@@ -1,15 +1,15 @@
-name: test-spot
-on:
-  push:
-  merge_group:
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
-jobs:
-  job1:
-    runs-on: actions-runner-controller
-    # runs-on: ubuntu-latest
-    steps:
-      - name: my-step
-        run: |
-          echo hello
+# name: test-spot
+# on:
+#   push:
+#   merge_group:
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+#   cancel-in-progress: true
+# jobs:
+#   job1:
+#     # runs-on: actions-runner-controller
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: my-step
+#         run: |
+#           echo hello
