@@ -7,8 +7,8 @@ concurrency:
   cancel-in-progress: true
 jobs:
   job1:
-    # runs-on: actions-runner-controller
-    runs-on: ubuntu-latest
+    runs-on: actions-runner-controller
+    # runs-on: ubuntu-latest
     steps:
       - name: my-step
         run: |
