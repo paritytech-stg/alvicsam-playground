@@ -22,6 +22,7 @@ jobs:
       - name: hello
         run: |
           echo "Hello World!"
+          echo $GITHUB_RUN_ID
   hello-world2:
     runs-on: arc-runners-default
     # container:
