@@ -32,3 +32,13 @@ jobs:
       - name: fail me
         run: |
           exit 1
+  hello-world3:
+    runs-on: arc-runners-default
+    strategy:
+      fail-fast: false
+      matrix:
+        network: [rococo, westend]
+    steps:
+      - name: run ${{ matrix.package }}
+        run: |
+          echo "Running ${{ matrix.network }}"
