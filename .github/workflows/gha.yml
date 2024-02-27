@@ -19,8 +19,9 @@ jobs:
       - name: hello
         run: |
           echo "Hello World!"
+          echo "GITHUB_JOB: $GITHUB_JOB"
           env
-          sleep 100
+          # sleep 100
   hello-world2:
     runs-on: arc-runners-default
     # container:
@@ -40,4 +41,4 @@ jobs:
         run: |
           echo "Running ${{ matrix.network }}"
           env
-          sleep 100
+          # sleep 100
