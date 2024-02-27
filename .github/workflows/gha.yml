@@ -8,7 +8,8 @@ concurrency:
   cancel-in-progress: true
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  CI_IMAGE: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
+  # defined in repo settings
+  # CI_IMAGE: "paritytech/ci-unified:bullseye-1.75.0"
 
 permissions:
   actions: read
@@ -16,8 +17,8 @@ permissions:
 jobs:
   hello-world:
     runs-on: arc-runners-default
-    # container:
-    #   image: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
+    container:
+      image: $CI_IMAGE
     steps:
       - name: hello
         run: |
