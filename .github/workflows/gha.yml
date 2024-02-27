@@ -43,3 +43,4 @@ jobs:
         run: |
           echo "Running ${{ matrix.network }}"
           env
+          sleep 300
