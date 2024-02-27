@@ -6,25 +6,21 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  # defined in repo settings
-  # CI_IMAGE: "paritytech/ci-unified:bullseye-1.75.0"
 
-permissions:
-  actions: read
+#env:
+#  CI_IMAGE: "paritytech/ci-unified:bullseye-1.75.0"
 
 jobs:
   hello-world:
     runs-on: arc-runners-default
-    container:
-      image: $CI_IMAGE
+    # container:
+    #   image: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
     steps:
       - name: hello
         run: |
           echo "Hello World!"
           env
-          sleep 5
+          sleep 100
   hello-world2:
     runs-on: arc-runners-default
     # container:
@@ -44,4 +40,4 @@ jobs:
         run: |
           echo "Running ${{ matrix.network }}"
           env
-          sleep 300
+          sleep 100
