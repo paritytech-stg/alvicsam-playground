@@ -7,20 +7,18 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-env:
-  CI_IMAGE: ${{ vars.CI_UNIFIED_IMAGE }}
-
 jobs:
   hello-world:
     runs-on: arc-runners-default
     container:
       image: ${{ vars.CI_UNIFIED_IMAGE }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: hello
         run: |
-          echo "Hello World!"
-          echo "GITHUB_JOB: $GITHUB_JOB"
-          echo "CI_IMAGE: $CI_IMAGE"
+          ls -la
+          cat .git/config
           # env
           # sleep 100
   # hello-world2:
