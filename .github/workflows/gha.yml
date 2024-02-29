@@ -43,9 +43,12 @@ jobs:
           ls -la
           cat .git/config
           time git clone https://github.com/paritytech/polkadot-sdk.git
+          echo "---------------------------------------------------"
           cd polkadot-sdk
           ls
           cat .git/config
+          echo "---------------------------------------------------"
+          cat $XDG_CONFIG_HOME/git/credentials
       # - name: fail me
       #   run: |
       #     exit 1
