@@ -8,7 +8,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  CI_IMAGE: $CI_UNIFIED_IMAGE
+  CI_IMAGE: ${{ variables.CI_UNIFIED_IMAGE }}
 
 jobs:
   hello-world:
