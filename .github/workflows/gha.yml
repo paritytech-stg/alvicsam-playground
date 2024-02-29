@@ -7,8 +7,8 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-#env:
-#  CI_IMAGE: "paritytech/ci-unified:bullseye-1.75.0"
+env:
+  CI_IMAGE: $CI_UNIFIED_IMAGE
 
 jobs:
   hello-world:
@@ -20,25 +20,36 @@ jobs:
         run: |
           echo "Hello World!"
           echo "GITHUB_JOB: $GITHUB_JOB"
-          env
-          sleep 100
-  hello-world2:
-    runs-on: arc-runners-default
-    # container:
-    #   image: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
-    steps:
-      - name: fail me
-        run: |
-          exit 1
-  hello-world3:
-    runs-on: arc-runners-default
-    strategy:
-      fail-fast: false
-      matrix:
-        network: [rococo, westend]
-    steps:
-      - name: run ${{ matrix.package }}
-        run: |
-          echo "Running ${{ matrix.network }}"
-          env
-          sleep 100
+          echo "CI_IMAGE: $CI_IMAGE"
+          # env
+          # sleep 100
+  # hello-world2:
+  #   runs-on: arc-runners-default
+  #   # container:
+  #   #   image: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
+  #   steps:
+  #     - name: fail me
+  #       run: |
+  #         exit 1
+  # hello-world3:
+  #   runs-on: arc-runners-default
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       network: [rococo, westend]
+  #   steps:
+  #     - name: run ${{ matrix.package }}
+  #       run: |
+  #         echo "Running ${{ matrix.network }}"
+  #         env
+  #         # sleep 100
+  # hello-world4:
+  #   runs-on: arc-runners-default
+  #   container:
+  #     image: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
+  #   steps:
+  #     - name: run ${{ matrix.package }}
+  #       run: |
+  #         echo "Running ${{ matrix.network }}"
+  #         env
+  #         # sleep 100
