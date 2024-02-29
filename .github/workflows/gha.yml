@@ -47,8 +47,8 @@ jobs:
           # cd polkadot-sdk
           # ls
           # cat .git/config
-          echo "---------------------------------------------------"
-          cat .config/git/credentials
+          echo "----${HOME}-----------------------------------------------"
+          cat $HOME/.config/git/credentials
       # - name: fail me
       #   run: |
       #     exit 1
