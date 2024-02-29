@@ -24,17 +24,31 @@ jobs:
           cat .git/config
           time git clone https://github.com/paritytech/polkadot-sdk.git
           cd polkadot-sdk
+          ls
           cat .git/config
           # env
           # sleep 100
-  # hello-world2:
-  #   runs-on: arc-runners-default
-  #   # container:
-  #   #   image: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
-  #   steps:
-  #     - name: fail me
-  #       run: |
-  #         exit 1
+  hello-world2:
+    runs-on: arc-runners-default
+    # container:
+    #   image: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: de-vri-es/setup-git-credentials@v2
+        with:
+          credentials: "${{ secrets.GITHUB_TOKEN }}"
+      - name: hello
+        run: |
+          ls -la
+          cat .git/config
+          time git clone https://github.com/paritytech/polkadot-sdk.git
+          cd polkadot-sdk
+          ls
+          cat .git/config
+      # - name: fail me
+      #   run: |
+      #     exit 1
   # hello-world3:
   #   runs-on: arc-runners-default
   #   strategy:
