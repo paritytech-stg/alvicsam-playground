@@ -13,8 +13,8 @@ env:
 jobs:
   hello-world:
     runs-on: arc-runners-default
-    # container:
-    #   image: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
+    container:
+      image: ${{ vars.CI_UNIFIED_IMAGE }}
     steps:
       - name: hello
         run: |
