@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v4
       - uses: de-vri-es/setup-git-credentials@v2
         with:
-          credentials: "${{ secrets.GITHUB_TOKEN }}"
+          credentials: "GitHub:${{ secrets.GITHUB_TOKEN }}"
       - name: hello
         run: |
           ls -la
