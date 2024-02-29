@@ -8,26 +8,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  hello-world:
-    runs-on: arc-runners-default
-    container:
-      image: ${{ vars.CI_UNIFIED_IMAGE }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - uses: oleksiyrudenko/gha-git-credentials@v2
-        with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: hello
-        run: |
-          ls -la
-          cat .git/config
-          time git clone https://github.com/paritytech/polkadot-sdk.git
-          cd polkadot-sdk
-          ls
-          cat .git/config
-          # env
-          # sleep 100
+  # hello-world:
+  #   runs-on: arc-runners-default
+  #   container:
+  #     image: ${{ vars.CI_UNIFIED_IMAGE }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #     - uses: oleksiyrudenko/gha-git-credentials@v2
+  #       with:
+  #         token: "${{ secrets.GITHUB_TOKEN }}"
+  #     - name: hello
+  #       run: |
+  #         ls -la
+  #         cat .git/config
+  #         time git clone https://github.com/paritytech/polkadot-sdk.git
+  #         cd polkadot-sdk
+  #         ls
+  #         cat .git/config
+  #         # env
+  #         # sleep 100
   hello-world2:
     runs-on: arc-runners-default
     container:
@@ -42,13 +42,13 @@ jobs:
         run: |
           ls -la
           cat .git/config
-          time git clone https://github.com/paritytech/polkadot-sdk.git
+          # time git clone https://github.com/paritytech/polkadot-sdk.git
+          # echo "---------------------------------------------------"
+          # cd polkadot-sdk
+          # ls
+          # cat .git/config
           echo "---------------------------------------------------"
-          cd polkadot-sdk
-          ls
-          cat .git/config
-          echo "---------------------------------------------------"
-          cat $XDG_CONFIG_HOME/git/credentials
+          cat .config/git/credentials
       # - name: fail me
       #   run: |
       #     exit 1
