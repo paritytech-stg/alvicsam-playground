@@ -45,7 +45,8 @@ jobs:
           time git clone https://github.com/paritytech-stg/alvicsam-playground.git
           # time git clone https://github.com/paritytech/polkadot-sdk.git
           echo "---------------------------------------------------"
-          cd polkadot-sdk
+          # cd polkadot-sdk
+          cd alvicsam-playground
           ls
           cat .git/config
           echo "----${HOME}-----------------------------------------------"
