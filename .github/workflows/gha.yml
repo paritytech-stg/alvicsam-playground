@@ -37,16 +37,17 @@ jobs:
         uses: actions/checkout@v4
       - uses: de-vri-es/setup-git-credentials@v2
         with:
-          credentials: "GitHub:${{ secrets.GITHUB_TOKEN }}"
+          credentials: "https://GitHub:${{ secrets.GITHUB_TOKEN }}@github.com"
       - name: hello
         run: |
           ls -la
           cat .git/config
+          time git clone https://github.com/paritytech-stg/alvicsam-playground.git
           # time git clone https://github.com/paritytech/polkadot-sdk.git
-          # echo "---------------------------------------------------"
-          # cd polkadot-sdk
-          # ls
-          # cat .git/config
+          echo "---------------------------------------------------"
+          cd polkadot-sdk
+          ls
+          cat .git/config
           echo "----${HOME}-----------------------------------------------"
           cat $HOME/.config/git/credentials
       # - name: fail me
