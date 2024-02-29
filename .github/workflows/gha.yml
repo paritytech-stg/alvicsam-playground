@@ -15,10 +15,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - uses: oleksiyrudenko/gha-git-credentials@v2
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
       - name: hello
         run: |
           ls -la
           cat .git/config
+          time git clone https://github.com/paritytech/polkadot-sdk.git
           # env
           # sleep 100
   # hello-world2:
