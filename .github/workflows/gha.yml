@@ -11,26 +11,24 @@ jobs:
   hello-world:
     runs-on: arc-runners-default
     container:
-      image: ${{ vars.CI_UNIFIED_IMAGE }}
+      # image: ${{ vars.CI_UNIFIED_IMAGE }}
+      image: europe-docker.pkg.dev/parity-ci-2024/ci-images/ci-unified:bullseye-1.75.0
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: oleksiyrudenko/gha-git-credentials@v2
-        with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
       - name: hello
         run: |
           echo hello
           # env
           # sleep 100
-  hello-world2:
-    runs-on: arc-runners-default
-    container:
-      image: ${{ vars.CI_UNIFIED_IMAGE }}
-    steps:
-      - name: fail me
-        run: |
-          exit 1
+  # hello-world2:
+  #   runs-on: arc-runners-default
+  #   container:
+  #     image: ${{ vars.CI_UNIFIED_IMAGE }}
+  #   steps:
+  #     - name: fail me
+  #       run: |
+  #         exit 1
   # hello-world3:
   #   runs-on: arc-runners-default
   #   strategy:
