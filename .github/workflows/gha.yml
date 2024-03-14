@@ -19,9 +19,18 @@ jobs:
         uses: actions/checkout@v4
       - name: hello
         run: |
-          apt-get update && apt-get install -y iproute2
-          ip a || echo "no ip"
-          ifconfig || echo "no ifconfig"
+          echo "Installing iproute2..."
+          apt-get update && apt-get install -y iproute2 iputils-ping
+          # ip a
+          # echo "Enabling loopback interface explicitly..."
+          # ip link set lo up
+          echo "Result"
+          ip a
+          ping -c 1 127.0.0.1
+          echo "Starting a simple HTTP server..."
+          python3 -m http.server --bind 127.0.0.1 8080 &
+          sleep 1
+          curl 127.0.0.1:8080
   # hello-world2:
   #   runs-on: arc-runners-default
   #   container:
