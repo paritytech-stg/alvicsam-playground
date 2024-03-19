@@ -26,7 +26,7 @@ jobs:
           rustup default 1.75.0
           rustup toolchain install "nightly-${{ env.RUST_NIGHTLY_VERSION }}" --profile minimal --component rustfmt rust-analyzer
           rustup show
-          cargo +nightly fmt --all -- --check
+          cargo +nightly-${{ env.RUST_NIGHTLY_VERSION }} fmt --all -- --check
 
   # hello-world2:
   #   runs-on: arc-runners-default
