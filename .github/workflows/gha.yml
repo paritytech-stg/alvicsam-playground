@@ -24,7 +24,9 @@ jobs:
         run: |
           rustup install 1.75.0
           rustup default 1.75.0
+          rustup target add wasm32-unknown-unknown --component clippy
           rustup toolchain install "nightly-${{ env.RUST_NIGHTLY_VERSION }}" --profile minimal --component rustfmt rust-analyzer
+          rustup target add wasm32-unknown-unknown --toolchain "nightly-${{ env.RUST_NIGHTLY_VERSION }}
           rustup show
           cargo +nightly-${{ env.RUST_NIGHTLY_VERSION }} fmt --all -- --check
 
