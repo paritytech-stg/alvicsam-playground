@@ -30,7 +30,7 @@ jobs:
           echo "installing rustup nightly"
           rustup toolchain install "nightly-${{ env.RUST_NIGHTLY_VERSION }}" --profile minimal --component rustfmt rust-analyzer
           echo "installing wasm32-unknown-unknown for nightly"
-          rustup target add wasm32-unknown-unknown --toolchain "nightly-${{ env.RUST_NIGHTLY_VERSION }}
+          rustup target add wasm32-unknown-unknown --toolchain "nightly-${{ env.RUST_NIGHTLY_VERSION }}"
           echo "showing rustup info"
           rustup show
           cargo +nightly-${{ env.RUST_NIGHTLY_VERSION }} fmt --all -- --check
