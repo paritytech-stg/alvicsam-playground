@@ -7,6 +7,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+env:
+  RUST_NIGHTLY_VERSION: 2024-03-14 # 1.78.0-nightly
+
 jobs:
   hello-world:
     # runs-on: arc-runners-default
@@ -21,7 +24,7 @@ jobs:
         run: |
           rustup install 1.75.0
           rustup default 1.75.0
-          rustup toolchain install "nightly-${RUST_NIGHTLY_VERSION}" --profile minimal --component rustfmt rust-analyzer
+          rustup toolchain install "nightly-${{ env.RUST_NIGHTLY_VERSION }}" --profile minimal --component rustfmt rust-analyzer
           rustup show
 
   # hello-world2:
