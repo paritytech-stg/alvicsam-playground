@@ -9,8 +9,8 @@ concurrency:
 
 jobs:
   hello-world:
-    runs-on: arc-runners-default
-    # runs-on: ubuntu-latest
+    # runs-on: arc-runners-default
+    runs-on: ubuntu-latest
     # container:
     #   image: ${{ vars.CI_UNIFIED_IMAGE }}
     # image: europe-docker.pkg.dev/parity-ci-2024/ci-images/ci-unified:bullseye-1.75.0
