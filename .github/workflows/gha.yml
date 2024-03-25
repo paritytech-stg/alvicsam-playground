@@ -17,10 +17,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: hello
+      - name: Set common env variables
+        run: cat .github/env >> $GITHUB_ENV
+      - name: install rust
         run: |
-          set -o allexport && source .github/env && set +o allexport
           rustup toolchain install "nightly-$RUST_NIGHTLY_VERSION" --profile minimal --component rustfmt
+      - name: Rustfmt (check)
+        run: |
           cargo +nightly-$RUST_NIGHTLY_VERSION fmt --all -- --check
 
   # hello-world2:
