@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set common env variables
-        run: cat .github/env >> $GITHUB_ENV
+        run: cat .github/env | grep -v '#' >> $GITHUB_ENV
       - name: install rust
         run: |
           rustup toolchain install "nightly-$RUST_NIGHTLY_VERSION" --profile minimal --component rustfmt
