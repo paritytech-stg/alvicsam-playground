@@ -7,9 +7,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-env:
-  RUST_NIGHTLY_VERSION: 2024-03-14 # 1.78.0-nightly
-
 jobs:
   hello-world:
     # runs-on: arc-runners-default
@@ -22,18 +19,9 @@ jobs:
         uses: actions/checkout@v4
       - name: hello
         run: |
-          echo "installing rustup stable"
-          rustup install 1.75.0
-          rustup default 1.75.0
-          echo "installing wasm32-unknown-unknown"
-          rustup target add wasm32-unknown-unknown
-          echo "installing rustup nightly"
-          rustup toolchain install "nightly-${{ env.RUST_NIGHTLY_VERSION }}" --profile minimal --component rustfmt rust-analyzer
-          echo "installing wasm32-unknown-unknown for nightly"
-          rustup target add wasm32-unknown-unknown --toolchain "nightly-${{ env.RUST_NIGHTLY_VERSION }}"
-          echo "showing rustup info"
-          rustup show
-          cargo +nightly-${{ env.RUST_NIGHTLY_VERSION }} fmt --all -- --check
+          set -o allexport && source .github/env && set +o allexport
+          rustup toolchain install "nightly-$RUST_NIGHTLY_VERSION" --profile minimal --component rustfmt
+          cargo +nightly-$RUST_NIGHTLY_VERSION fmt --all -- --check
 
   # hello-world2:
   #   runs-on: arc-runners-default
