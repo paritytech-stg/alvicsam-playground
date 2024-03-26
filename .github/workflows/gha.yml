@@ -1,4 +1,4 @@
-name: hello-world
+name: self-hosted-runner-default
 on:
   push:
   merge_group:
@@ -9,11 +9,50 @@ concurrency:
 
 jobs:
   hello-world:
-    runs-on: actions-runner-controller
+    # runs-on: arc-runners-default
+    runs-on: ubuntu-latest
+    # container:
+    #   image: ${{ vars.CI_UNIFIED_IMAGE }}
+    # image: europe-docker.pkg.dev/parity-ci-2024/ci-images/ci-unified:bullseye-1.75.0
     steps:
-      - name: my-step
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set common env variables
+        run: cat .github/env | grep -v '#' >> $GITHUB_ENV
+      - name: install rust
         run: |
-          echo "Hello World!"
-          echo "PR Num: ${{ github.event.pull_request.number }}"
-          echo "MG Var: ${{ github.event.merge_group }}"
-          env | grep GITHUB
+          rustup toolchain install "nightly-$RUST_NIGHTLY_VERSION" --profile minimal --component rustfmt
+      - name: Rustfmt (check)
+        run: |
+          cargo +nightly-$RUST_NIGHTLY_VERSION fmt --all -- --check
+
+  # hello-world2:
+  #   runs-on: arc-runners-default
+  #   container:
+  #     image: ${{ vars.CI_UNIFIED_IMAGE }}
+  #   steps:
+  #     - name: fail me
+  #       run: |
+  #         exit 1
+  # hello-world3:
+  #   runs-on: arc-runners-default
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       network: [rococo, westend]
+  #   steps:
+  #     - name: run ${{ matrix.package }}
+  #       run: |
+  #         echo "Running ${{ matrix.network }}"
+  #         env
+  #         # sleep 100
+  # hello-world4:
+  #   runs-on: arc-runners-default
+  #   container:
+  #     image: "paritytech/ci-unified:bullseye-1.74.0-2023-11-01-v20231204"
+  #   steps:
+  #     - name: run ${{ matrix.package }}
+  #       run: |
+  #         echo "Running ${{ matrix.network }}"
+  #         env
+  #         # sleep 100
