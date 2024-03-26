@@ -1,0 +1,26 @@
+name: test-spot-gcp
+on:
+  push:
+  merge_group:
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+permissions:
+  actions: read
+
+jobs:
+  test-spot-gcp:
+    runs-on: actions-runner-controller
+    steps:
+      - name: my-step
+        run: |
+          echo "job1"
+      #     sleep 300
+      # - name: my-step2
+      #   run: |
+      #     echo "job1"
+      #     sleep 3600

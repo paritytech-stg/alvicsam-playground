@@ -8,12 +8,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  hello-world:
-    runs-on: actions-runner-controller
+  short-sleep1:
+    runs-on: ubuntu-latest
     steps:
-      - name: my-step
+      - name: cpu count
         run: |
-          echo "Hello World!"
-          echo "PR Num: ${{ github.event.pull_request.number }}"
-          echo "MG Var: ${{ github.event.merge_group }}"
-          env | grep GITHUB
+          cat /proc/cpuinfo
