@@ -2,20 +2,32 @@
 
 on:
   workflow_dispatch:
-    inputs:
-      json_file:
-        description: "The json file containing the github actions to benchmark"
-        required: true
 
 jobs:
   benchmark:
     runs-on: ubuntu-latest
     steps:
-      - name: Write json to a file
-        run: echo ${{ github.event.inputs.json_file }} > benchmark.json
-      - name: Run benchmark
+      - name: Checkout Sources
+        uses: actions/checkout@v4.1.2
+        with:
+          fetch-depth: 0
+          ref: "gh-pages"
+
+      - name: Copy bench results
+        id: step_one
+        run: |
+          cp bench/gitlab/availability-distribution-regression-bench.json availability-distribution-regression-bench.json
+
+      - name: Switch branch
+        id: step_two
+        run: |
+          git checkout master
+
+      - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: "customSmallerIsBetter"
-          output-file-path: benchmark.json
-
+          output-file-path: "availability-distribution-regression-bench.json"
+          benchmark-data-dir-path: "bench/graphs"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true

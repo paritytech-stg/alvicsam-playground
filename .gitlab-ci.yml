@@ -2,7 +2,9 @@ stages:
   - build
   - test
   - deploy
+  - benchmark
   - publish
+  - trigger_gha
 
 variables:
   CI_IMAGE: "paritytech/tools:latest"
@@ -30,6 +32,10 @@ default:
     - if: $CI_COMMIT_REF_NAME =~ /^[0-9]+$/ # PRs
     - if: $CI_COMMIT_REF_NAME =~ /^gh-readonly-queue.*$/ # merge queues
     - if: $CI_COMMIT_REF_NAME =~ /^release-parachains-v[0-9]+\.[0-9]+.*$/ # i.e. v1.0, v2.1rc1
+
+.master-refs:
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "master"
 
 build-job:
   stage: build
@@ -71,3 +77,67 @@ publish-crate:
     - if: $CI_COMMIT_REF_NAME =~ /^v.[0-9]+\.[0-9]+.*$/ # i.e. v.1.0, v.2.1rc1
   script:
     - echo "run only when tag/release is set"
+
+benchmark:
+  stage: benchmark
+  extends:
+    - .kubernetes-env
+    - .master-refs
+  script:
+    - mkdir -p charts
+    - echo '[{"name":"Sent to peers","unit":"KiB","value":1.6666666666666667},{"name":"Received from peers","unit":"KiB","value":307203.0},{"name":"test-environment","unit":"seconds","value":0.19484014633333338},{"name":"availability-recovery","unit":"seconds","value":12.848252669333329}]' > charts/availability-distribution-regression-bench.json
+  artifacts:
+    name: "${CI_JOB_NAME}_${CI_COMMIT_REF_NAME}"
+    when: on_success
+    expire_in: 1 days
+    paths:
+      - charts/
+
+publish-ghpages:
+  stage: publish
+  variables:
+    CI_IMAGE: "paritytech/tools:latest"
+  extends:
+    - .kubernetes-env
+    - .master-refs
+  needs:
+    - job: benchmark
+      artifacts: true
+  script:
+    # setup ssh
+    - eval $(ssh-agent)
+    - ssh-add - <<< ${GITHUB_SSH_PRIV_KEY}
+    - mkdir ~/.ssh && touch ~/.ssh/known_hosts
+    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+    # Set git config
+    - rm -rf .git/config
+    - git config user.email "devops-team@parity.io"
+    - git config user.name "${GITHUB_USER}"
+    - git config remote.origin.url "git@github.com:/paritytech-stg/${CI_PROJECT_NAME}.git"
+    - git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+    - git fetch origin gh-pages
+    # Push result to github
+    - git checkout gh-pages
+    - mkdir -p bench/gitlab/ || echo "Directory exists"
+    - rm -rf bench/gitlab/*.json || echo "No json files"
+    - cp -r charts/*.json bench/gitlab/
+    - git add bench/gitlab/
+    - git commit -m "Add json files with benchmark results for ${CI_COMMIT_REF_NAME}"
+    - git push origin gh-pages
+
+trigger_worfflow:
+  stage: trigger_gha
+  extends:
+    - .kubernetes-env
+    - .master-refs
+  needs:
+    - job: publish-ghpages
+      artifacts: false
+  script:
+    - echo "Triggering workflow"
+    - |
+      curl -v -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+             https://api.github.com/repos/paritytech-stg/${CI_PROJECT_NAME}/actions/workflows/benches.yml/dispatches \
+              -d '{"ref":"refs/heads/master"}'
