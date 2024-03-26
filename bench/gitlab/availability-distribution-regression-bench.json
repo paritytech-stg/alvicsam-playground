@@ -1,1 +1,1 @@
-[{"name":"Sent to peers","unit":"KiB","value":1.6666666666666667},{"name":"Received from peers","unit":"KiB","value":307203.0},{"name":"test-environment","unit":"seconds","value":0.19484014633333338},{"name":"availability-recovery","unit":"seconds","value":12.848252669333329}]
+[{"name":"Sent to peers","unit":"KiB","value":1.8},{"name":"Received from peers","unit":"KiB","value":307302.0},{"name":"test-environment","unit":"seconds","value":0.20},{"name":"availability-recovery","unit":"seconds","value":12.7}]
