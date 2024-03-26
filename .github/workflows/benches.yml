@@ -1,0 +1,20 @@
+# The actions takes json file as input and runs github-action-benchmark for it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      json_file:
+        description: "The json file containing the github actions to benchmark"
+        required: true
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write json to a file
+        run: echo ${{ github.event.inputs.json_file }} > benchmark.json
+      - name: Run benchmark
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          tool: "customSmallerIsBetter"
+          output-file-path: benchmark.json
