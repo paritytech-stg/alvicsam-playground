@@ -9,11 +9,8 @@ concurrency:
 
 jobs:
   hello-world:
-    runs-on: actions-runner-controller
+    runs-on: ubuntu-latest
     steps:
       - name: my-step
         run: |
           echo "Hello World!"
-          echo "PR Num: ${{ github.event.pull_request.number }}"
-          echo "MG Var: ${{ github.event.merge_group }}"
-          env | grep GITHUB
