@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1711533629545,
+  "lastUpdate": 1711534208909,
   "repoUrl": "https://github.com/paritytech-stg/alvicsam-playground",
   "entries": {
     "Benchmark": [
@@ -194,6 +194,48 @@ window.BENCHMARK_DATA = {
           {
             "name": "Sent to peers",
             "value": 14786,
+            "unit": "KiB"
+          },
+          {
+            "name": "Received from peers",
+            "value": 407302.1,
+            "unit": "KiB"
+          },
+          {
+            "name": "test-environment",
+            "value": 0.2,
+            "unit": "seconds"
+          },
+          {
+            "name": "availability-recovery",
+            "value": 12.7,
+            "unit": "seconds"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "alvicsam",
+            "username": "alvicsam",
+            "email": "alvicsam@gmail.com"
+          },
+          "committer": {
+            "name": "alvicsam",
+            "username": "alvicsam",
+            "email": "alvicsam@gmail.com"
+          },
+          "id": "7139ce896f9fc32511b46c4321660454d2682d4a",
+          "message": "quiet",
+          "timestamp": "2024-03-27T10:07:18Z",
+          "url": "https://github.com/paritytech-stg/alvicsam-playground/commit/7139ce896f9fc32511b46c4321660454d2682d4a"
+        },
+        "date": 1711534208186,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Sent to peers",
+            "value": 21726,
             "unit": "KiB"
           },
           {
