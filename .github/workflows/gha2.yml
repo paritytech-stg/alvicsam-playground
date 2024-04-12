@@ -1,4 +1,4 @@
-name: self-hosted-runner-default
+name: self-hosted-runner-default2
 on:
   push:
   merge_group:
