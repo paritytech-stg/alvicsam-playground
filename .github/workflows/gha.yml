@@ -1,6 +1,7 @@
 name: hello-world
 on:
-  push:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
   merge_group:
 
 concurrency:
