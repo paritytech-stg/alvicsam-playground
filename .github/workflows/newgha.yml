@@ -1,0 +1,17 @@
+name: hello-world
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  merge_group:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  hello-world:
+    runs-on: arc-runners-default-stg
+    steps:
+      - name: my-step
+        run: |
+          echo "Hello World!1111"
