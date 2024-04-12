@@ -1,0 +1,18 @@
+name: self-hosted-runner-default
+on:
+  push:
+  merge_group:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  hello-world2:
+    runs-on: arc-runners-default-stg
+    # runs-on: ubuntu-latest
+    # container:
+    #   image: ${{ vars.CI_UNIFIED_IMAGE }}
+    steps:
+      - name: hello
+        run: echo hello
