@@ -11,8 +11,8 @@ jobs:
   hello-world:
     runs-on: arc-runners-default-stg
     # runs-on: ubuntu-latest
-    # container:
-    #   image: ${{ vars.CI_UNIFIED_IMAGE }}
+    container:
+      image: ${{ vars.CI_UNIFIED_IMAGE }}
     steps:
       - name: hello
         run: |
