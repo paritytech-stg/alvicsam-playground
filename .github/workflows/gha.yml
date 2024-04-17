@@ -15,14 +15,16 @@ jobs:
     #   image: ${{ vars.CI_UNIFIED_IMAGE }}
     steps:
       - name: hello
-        run: echo hello
-  hello-world-beefy:
-    runs-on: arc-runners-beefy-stg
-    steps:
-      - name: hello
-        run: echo hello
-  hello-world-alvicsam:
-    runs-on: arc-runners-alvicsam
-    steps:
-      - name: hello
-        run: echo hello
+        run: |
+          echo hello
+          sleep 600
+  # hello-world-beefy:
+  #   runs-on: arc-runners-beefy-stg
+  #   steps:
+  #     - name: hello
+  #       run: echo hello
+  # hello-world-alvicsam:
+  #   runs-on: arc-runners-alvicsam
+  #   steps:
+  #     - name: hello
+  #       run: echo hello
