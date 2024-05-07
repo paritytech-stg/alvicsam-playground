@@ -16,8 +16,7 @@ jobs:
     steps:
       - name: hello
         run: |
-          echo hello
-          sleep 600
+          env
   # hello-world-beefy:
   #   runs-on: arc-runners-beefy-stg
   #   steps:
