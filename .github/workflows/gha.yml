@@ -8,15 +8,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  hello-world:
-    runs-on: arc-runners-default-stg
+  default-runner:
+    runs-on: arc-runners-alvicsam
     # runs-on: ubuntu-latest
-    container:
-      image: ${{ vars.CI_UNIFIED_IMAGE }}
+    # container:
+    #   image: ${{ vars.CI_UNIFIED_IMAGE }}
     steps:
       - name: hello
-        run: |
-          env
+        run: df -h
+  benchmark-runner:
+    runs-on: arc-runners-alvicsam-benchmark
+    # runs-on: ubuntu-latest
+    # container:
+    #   image: ${{ vars.CI_UNIFIED_IMAGE }}
+    steps:
+      - name: hello
+        run: df -h
   # hello-world-beefy:
   #   runs-on: arc-runners-beefy-stg
   #   steps:
