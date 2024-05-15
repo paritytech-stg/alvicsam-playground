@@ -8,22 +8,36 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  default-runner:
-    runs-on: arc-runners-alvicsam
-    # runs-on: ubuntu-latest
-    # container:
-    #   image: ${{ vars.CI_UNIFIED_IMAGE }}
+  basic-info:
+    strategy:
+      matrix:
+        runner: [arc-runners-alvicsam, arc-runners-alvicsam-benchmark]
+    runs-on: ${{ matrix.runner }}
     steps:
       - name: hello
-        run: df -h
-  benchmark-runner:
-    runs-on: arc-runners-alvicsam-benchmark
-    # runs-on: ubuntu-latest
-    # container:
-    #   image: ${{ vars.CI_UNIFIED_IMAGE }}
-    steps:
-      - name: hello
-        run: df -h
+        run: |
+          df -h
+          lscpu
+  # default-runner:
+  #   runs-on: arc-runners-alvicsam
+  #   # runs-on: ubuntu-latest
+  #   # container:
+  #   #   image: ${{ vars.CI_UNIFIED_IMAGE }}
+  #   steps:
+  #     - name: hello
+  #       run: |
+  #         df -h
+  #         lscpu
+  # benchmark-runner:
+  #   runs-on: arc-runners-alvicsam-benchmark
+  #   # runs-on: ubuntu-latest
+  #   # container:
+  #   #   image: ${{ vars.CI_UNIFIED_IMAGE }}
+  #   steps:
+  #     - name: hello
+  #       run: |
+  #         df -h
+  #         lscpu
   # hello-world-beefy:
   #   runs-on: arc-runners-beefy-stg
   #   steps:
