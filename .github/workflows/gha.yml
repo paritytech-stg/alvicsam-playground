@@ -11,7 +11,12 @@ jobs:
   basic-info:
     strategy:
       matrix:
-        runner: [arc-runners-alvicsam, arc-runners-alvicsam-benchmark]
+        runner:
+          [
+            arc-runners-alvicsam,
+            arc-runners-alvicsam-benchmark,
+            arc-runners-beefy-stg,
+          ]
     runs-on: ${{ matrix.runner }}
     steps:
       - name: hello
