@@ -27,7 +27,7 @@ jobs:
     #         arc-runners-beefy-stg,
     #       ]
     # runs-on: ${{ matrix.runner }}
-    runs-on: ubuntu-latest
+    runs-on: arc-runners-alvicsam
     steps:
       - name: checkout
         uses: actions/checkout@v4
