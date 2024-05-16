@@ -49,6 +49,7 @@ if __name__ == "__main__":
     # stop all running workflows
     for workflow_id in workflow_ids:
         workflow = repo.get_workflow_run(int(workflow_id))
+        print(workflow.status)
         if workflow.status == "in_progress" or workflow.status == "queued":
             workflow.cancel()
             print(f"Workflow {workflow_id} has been cancelled.")
