@@ -41,6 +41,9 @@ if __name__ == "__main__":
     check_runs = commit.get_check_runs()
     workflow_ids = []
 
+    print(f"Commit: {commit}")
+    print(f"Check runs: {check_runs}")
+
     for check_run in check_runs:
         id = get_workflow_id(check_run.html_url)
         if id:
