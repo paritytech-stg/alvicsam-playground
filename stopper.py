@@ -45,6 +45,7 @@ if __name__ == "__main__":
     print(f"Check runs: {check_runs}")
 
     for check_run in check_runs:
+        print(f"Check run: {check_run}")
         id = get_workflow_id(check_run.html_url)
         if id:
             workflow_ids.append(id)
