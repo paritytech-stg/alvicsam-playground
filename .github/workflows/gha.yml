@@ -22,7 +22,9 @@ jobs:
     steps:
       - name: hello
         run: |
-          env
+          env | grep "paritytech-stg"
+          echo "---------------------------------"
+          env | grep "alvicsam-playground"
   # default-runner:
   #   runs-on: arc-runners-alvicsam
   #   # runs-on: ubuntu-latest
