@@ -33,7 +33,7 @@ def get_workflow_id(url):
 
 
 if __name__ == "__main__":
-    sleep(30)
+    # sleep(30)
     print("Canceling workflows")
     g = Github(access_token)
     repo = g.get_repo(gh_repo)
@@ -43,6 +43,7 @@ if __name__ == "__main__":
 
     print(f"Commit: {commit}")
     print(f"Check runs: {check_runs}")
+    print(f"Check runs total count: {check_runs.totalCount}")
 
     for check_run in check_runs:
         print(f"Check run: {check_run}")
