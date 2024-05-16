@@ -9,9 +9,9 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  # actions: write
-  # contents: read
-  # checks: read
+  actions: write
+  contents: read
+  checks: read
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
