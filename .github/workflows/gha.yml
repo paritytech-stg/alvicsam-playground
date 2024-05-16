@@ -1,6 +1,6 @@
 name: self-hosted-runner-default
 on:
-  push:
+  pull_request:
   merge_group:
 
 concurrency:
@@ -22,9 +22,10 @@ jobs:
     steps:
       - name: hello
         run: |
-          env | grep "paritytech-stg"
-          echo "---------------------------------"
-          env | grep "alvicsam-playground"
+          env
+          # env | grep "paritytech-stg"
+          # echo "---------------------------------"
+          # env | grep "alvicsam-playground"
   # default-runner:
   #   runs-on: arc-runners-alvicsam
   #   # runs-on: ubuntu-latest
