@@ -3,6 +3,7 @@ import re
 import sys
 
 from github import Github
+from time import sleep
 
 try:
     access_token = os.getenv("GITHUB_TOKEN")
@@ -32,6 +33,8 @@ def get_workflow_id(url):
 
 
 if __name__ == "__main__":
+    sleep(30)
+    print("Canceling workflows")
     g = Github(access_token)
     repo = g.get_repo(gh_repo)
     commit = repo.get_commit(sha=sha)
