@@ -8,13 +8,13 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-permissions: read-all
-  # actions: write
-  # contents: read
-  # checks: read
+# permissions: read-all
+#   # actions: write
+#   # contents: read
+#   # checks: read
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
 
 jobs:
   basic-info:
