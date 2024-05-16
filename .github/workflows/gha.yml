@@ -30,7 +30,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: hello
-        run: python3 stopper.py
+        run: |
+          pip3 install PyGithub
+          python3 stopper.py
   # default-runner:
   #   runs-on: arc-runners-alvicsam
   #   # runs-on: ubuntu-latest
