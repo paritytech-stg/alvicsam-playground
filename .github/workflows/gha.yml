@@ -7,6 +7,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+permissions:
+  actions: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   basic-info:
     # strategy:
@@ -20,12 +26,10 @@ jobs:
     # runs-on: ${{ matrix.runner }}
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
       - name: hello
-        run: |
-          env
-          # env | grep "paritytech-stg"
-          # echo "---------------------------------"
-          # env | grep "alvicsam-playground"
+        run: python3 stopper.py
   # default-runner:
   #   runs-on: arc-runners-alvicsam
   #   # runs-on: ubuntu-latest
