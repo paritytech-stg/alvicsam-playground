@@ -10,6 +10,7 @@ concurrency:
 
 permissions:
   actions: write
+  contents: read
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
