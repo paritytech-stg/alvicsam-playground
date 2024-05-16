@@ -9,20 +9,20 @@ concurrency:
 
 jobs:
   basic-info:
-    strategy:
-      matrix:
-        runner:
-          [
-            arc-runners-alvicsam,
-            arc-runners-alvicsam-benchmark,
-            arc-runners-beefy-stg,
-          ]
-    runs-on: ${{ matrix.runner }}
+    # strategy:
+    #   matrix:
+    #     runner:
+    #       [
+    #         arc-runners-alvicsam,
+    #         arc-runners-alvicsam-benchmark,
+    #         arc-runners-beefy-stg,
+    #       ]
+    # runs-on: ${{ matrix.runner }}
+    runs-on: ubuntu-latest
     steps:
       - name: hello
         run: |
-          df -h
-          lscpu
+          env
   # default-runner:
   #   runs-on: arc-runners-alvicsam
   #   # runs-on: ubuntu-latest
