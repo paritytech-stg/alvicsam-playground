@@ -7,6 +7,8 @@ from time import sleep
 
 try:
     access_token = os.getenv("GITHUB_TOKEN")
+    # for testing
+    # access_token = input("Enter your GitHub token: ")
     sha = os.getenv("GITHUB_SHA")
     gh_repo = os.getenv("GITHUB_REPOSITORY")
     pr_num = os.getenv("GITHUB_REF_NAME").split("/")[0]
@@ -33,7 +35,6 @@ def get_workflow_id(url):
 
 
 if __name__ == "__main__":
-    # sleep(30)
     print("Canceling workflows")
     g = Github(access_token)
     repo = g.get_repo(gh_repo)
