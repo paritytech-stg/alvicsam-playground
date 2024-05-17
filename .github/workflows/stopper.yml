@@ -16,8 +16,7 @@ jobs:
     steps:
       - name: Run curl
         run: |
-          sudo apt-get update && sudo apt-get install -y curl
-          curl -L \
+          curl -L -v \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${GITHUB_TOKEN}" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
