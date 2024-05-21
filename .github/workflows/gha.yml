@@ -8,71 +8,17 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-permissions:
-  actions: write
-  contents: read
-  checks: read
-
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  use-other-workflow:
-    uses: ./.github/workflows/stopper.yml
-    secrets: inherit
   basic-info:
-    # strategy:
-    #   matrix:
-    #     runner:
-    #       [
-    #         arc-runners-alvicsam,
-    #         arc-runners-alvicsam-benchmark,
-    #         arc-runners-beefy-stg,
-    #       ]
-    # runs-on: ${{ matrix.runner }}
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
       - name: hello
-        run: |
-          env
-          sudo apt-get update && sudo apt-get install -y python3-pip python3
-          pip3 install PyGithub
-          echo ${GITHUB_TOKEN} | base64 | base64
-          # sleep 600
-          echo "--------------------------sleeping for 30 seconds----------------------------------"
-          sleep 30
-          echo "--------------------------running script----------------------------------"
-          python3 stopper.py
-
-  # default-runner:
-  #   runs-on: arc-runners-alvicsam
-  #   # runs-on: ubuntu-latest
-  #   # container:
-  #   #   image: ${{ vars.CI_UNIFIED_IMAGE }}
-  #   steps:
-  #     - name: hello
-  #       run: |
-  #         df -h
-  #         lscpu
-  # benchmark-runner:
-  #   runs-on: arc-runners-alvicsam-benchmark
-  #   # runs-on: ubuntu-latest
-  #   # container:
-  #   #   image: ${{ vars.CI_UNIFIED_IMAGE }}
-  #   steps:
-  #     - name: hello
-  #       run: |
-  #         df -h
-  #         lscpu
-  # hello-world-beefy:
-  #   runs-on: arc-runners-beefy-stg
-  #   steps:
-  #     - name: hello
-  #       run: echo hello
-  # hello-world-alvicsam:
-  #   runs-on: arc-runners-alvicsam
-  #   steps:
-  #     - name: hello
-  #       run: echo hello
+        run: exit 1
+      - name: Cancel workflows
+        if: ${{ failure() }}
+        run: echo "Canceling workflows"
