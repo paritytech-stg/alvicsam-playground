@@ -21,5 +21,5 @@ jobs:
         id: required
         run: exit 1
       - name: Cancel workflows
-        if: ${{ failure() && steps.required.conclusion == 'failure' }}
+        if: ${{ steps.required.conclusion == 'failure' }}
         run: echo "Canceling workflows"
