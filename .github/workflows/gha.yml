@@ -18,7 +18,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: hello
+        id: required
         run: exit 1
       - name: Cancel workflows
-        if: ${{ failure() }}
+        if: ${{ failure() && steps.required.conclusion == 'failure' }}
         run: echo "Canceling workflows"
