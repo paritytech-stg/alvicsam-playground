@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v4
       - name: hello
         id: required
+        continue-on-error: true
         run: exit 1
       - name: Cancel workflows
         if: ${{ steps.required.conclusion == 'failure' }}
