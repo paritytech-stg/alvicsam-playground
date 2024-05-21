@@ -18,9 +18,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      # - name: Failing step
-      #   id: required
-      #   run: exit 1
-      # - name: The demo step has failed
-      #   if: ${{ failure() && steps.required.conclusion == 'failure' }}
-      #   run: echo "The demo step has failed"
+      - name: Failing step
+        id: required
+        run: exit 1
+      - name: The demo step has failed
+        if: ${{ failure() && steps.required.conclusion == 'failure' }}
+        run: echo "The demo step has failed"
