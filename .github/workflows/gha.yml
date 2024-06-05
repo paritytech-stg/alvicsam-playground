@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   basic-info:
-    runs-on: oldkernel
+    runs-on: self-hosted
     # runs-on: arc-runners-default-stg
     steps:
       # - name: checkout
