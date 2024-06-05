@@ -11,9 +11,11 @@ concurrency:
 jobs:
   basic-info:
     runs-on: self-hosted
+    container:
+      image: "paritytech/ci-unified:bullseye-1.75.0-2024-01-22-v20240222"
     # runs-on: arc-runners-default-stg
     steps:
       # - name: checkout
       #   uses: actions/checkout@v4
-      - name: Failing step
+      - name: Uname -a
         run: uname -a
