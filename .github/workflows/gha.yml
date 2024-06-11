@@ -11,12 +11,12 @@ concurrency:
 jobs:
   basic-info:
     runs-on: self-hosted
-    # container:
-    #   image: "paritytech/ci-unified:bullseye-1.75.0-2024-01-22-v20240222"
+    container:
+      image: "paritytech/ci-unified:bullseye-1.75.0-2024-01-22-v20240222"
     steps:
       # - name: checkout
       #   uses: actions/checkout@v4
       - name: sleep
-        run: echo "sleeping for 10 seconds"; sleep 10
-      - name: long sleep
-        run: echo "sleeping for 600 seconds"; sleep 600
+        run: echo "sleeping for 30 seconds"; sleep 30
+      # - name: long sleep
+      #   run: echo "sleeping for 600 seconds"; sleep 600
