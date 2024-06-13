@@ -21,6 +21,7 @@ jobs:
         run: docker image ls
       - name: test env vars
         run: |
+          export RUN_AS_ROOT=true
           echo "whoami: $(sudo whoami)"
           sudo ps axufw
           sudo xargs -0 -L1 -a /proc/1/environ | grep APP_ID | wc -l
