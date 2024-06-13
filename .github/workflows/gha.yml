@@ -11,11 +11,15 @@ concurrency:
 jobs:
   basic-info:
     runs-on: self-hosted
-    container:
-      # image: "paritytech/ci-unified:bullseye-1.75.0-2024-01-22-v20240222"
-      image: "debian:12-slim"
+    # container:
+    #   # image: "paritytech/ci-unified:bullseye-1.75.0-2024-01-22-v20240222"
+    #   image: "debian:12-slim"
     steps:
       # - name: checkout
       #   uses: actions/checkout@v4
-      - name: sleep
-        run: echo "sleeping for 30 seconds"; sleep 30
+      - name: test env vars
+        run: awk 'BEGIN{for(v in ENVIRON) print v}'
+      - name: test env vars sudo
+        run: |
+          sudo -i
+          awk 'BEGIN{for(v in ENVIRON) print v}'
