@@ -18,8 +18,6 @@ jobs:
       # - name: checkout
       #   uses: actions/checkout@v4
       - name: test env vars
-        run: awk 'BEGIN{for(v in ENVIRON) print v}' | grep APP_PRIVATE_KEY || echo "APP_PRIVATE_KEY not found"
-      - name: test env vars sudo
-        run: |
-          sudo -i
-          awk 'BEGIN{for(v in ENVIRON) print v}' | grep APP_PRIVATE_KEY || echo "APP_PRIVATE_KEY not found"
+        run: docker image ls
+      - name: test env vars
+        run: xargs -0 -L1 -a /proc/1/environ | grep APP_ID | wc -l
