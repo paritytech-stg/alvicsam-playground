@@ -20,4 +20,6 @@ jobs:
       - name: test env vars
         run: docker image ls
       - name: test env vars
-        run: xargs -0 -L1 -a /proc/1/environ | grep APP_ID | wc -l
+        run: |
+          sudo -i
+          xargs -0 -L1 -a /proc/1/environ | grep APP_ID | wc -l
