@@ -1,4 +1,4 @@
-name: hello-world
+name: self-hosted-runner-default
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
@@ -9,9 +9,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  hello-world:
-    runs-on: arc-runners-default-stg
+  basic-info:
+    runs-on: self-hosted
+    # container:
+    #   # image: "paritytech/ci-unified:bullseye-1.75.0-2024-01-22-v20240222"
+    #   image: "debian:12-slim"
     steps:
-      - name: my-step
+      # - name: checkout
+      #   uses: actions/checkout@v4
+      - name: test env vars
+        run: docker image ls
+      - name: test env vars
         run: |
-          echo "Hello World!"
+          export RUN_AS_ROOT=true
+          echo "whoami: $(sudo whoami)"
+          sudo ps axufw
+          # sudo xargs -0 -L1 -a /proc/1/environ | grep APP_ID | wc -l
+          sudo awk 'BEGIN{for(v in ENVIRON) print v}' | grep -v GITHUB

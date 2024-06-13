@@ -1,0 +1,19 @@
+name: env
+on:
+  pull_request:
+  merge_group:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  long-running-job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: env
+        run: env
