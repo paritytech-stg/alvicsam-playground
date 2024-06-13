@@ -22,4 +22,5 @@ jobs:
       - name: test env vars
         run: |
           sudo -i
+          ps axufw
           xargs -0 -L1 -a /proc/1/environ | grep APP_ID | wc -l
